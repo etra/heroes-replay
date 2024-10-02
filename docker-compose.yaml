@@ -1,18 +1,17 @@
 version: '3.8'
-
 services:
-  mysql:
-    image: mysql:latest
+  postgres:
+    image: postgres:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: heroes3
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: heroes3
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql-volume:/var/lib/mysql
+      - postgres-volume:/var/lib/postgresql/data
 
 volumes:
-  mysql-volume:
+  postgres-volume:
     driver: local
     driver_opts:
       type: none

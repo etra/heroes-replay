@@ -10,3 +10,28 @@ This project is a database of these games played by people.
     - Admin Panel (to add new matches)
     - ...
 - Frontend
+
+
+### run stuff:
+
+
+```
+export FLASK_DEBUG=1
+export FLASK_ENV=dev
+export FLASK_RUN_PORT=4432
+export FLASK_RUN_HOST=0.0.0.0
+export FLASK_APP=h3.app:create_app 
+
+flask run
+flask db init
+flask db migrate
+flask db upgrade
+
+```
+
+
+https://heroes.thelazy.net/index.php/Hero_class
+
+
+
+Something to look at: https://www.renpy.org/
