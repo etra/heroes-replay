@@ -2,6 +2,8 @@ from h3.db import db
 from h3.models.town import Town
 from slugify import slugify
 
+
+
 class HeroClass(db.Model):
     __tablename__ = "hero_classes"
 
@@ -12,6 +14,12 @@ class HeroClass(db.Model):
     
     created_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
     updated_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            }
 
     def __repr__(self):
         return f"<HeroClass {self.name}>"
@@ -34,10 +42,18 @@ class Hero(db.Model):
     name = db.Column(db.String(length=32), nullable=False)
 
     hero_class_id = db.Column(db.String(length=32), db.ForeignKey('hero_classes.id'), nullable=False)
-    town_name = db.Column(db.String(length=32), db.ForeignKey('towns.id'), nullable=False)
+    town_id = db.Column(db.String(length=32), db.ForeignKey('towns.id'), nullable=False)
     
     created_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
     updated_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "hero_class_id": self.hero_class_id,
+            "town_id": self.town_id,
+            }
 
     def __repr__(self):
         return f"<Hero {self.name} of {self.town.name}>"

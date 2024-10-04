@@ -30,8 +30,15 @@ flask db upgrade
 ```
 
 
+
+
+
+
 https://heroes.thelazy.net/index.php/Hero_class
 
 
 
 Something to look at: https://www.renpy.org/
+
+
+

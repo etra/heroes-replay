@@ -9,6 +9,16 @@ class Town(db.Model):
     created_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
     updated_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            }
+    
+    @staticmethod
+    def from_dict(data):
+        return Town(id=data["id"], name=data["name"])
+    
 
     @staticmethod
     def create_town(name):

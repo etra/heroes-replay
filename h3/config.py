@@ -14,6 +14,8 @@ SQLALCHEMY_ENGINE_OPTIONS = {
 }
 SQLALCHEMY_ECHO = environ.get("SQLALCHEMY_ECHO", default=False)
 
+BACKUP_PATH = environ.get("BACKUP_PATH", default="./backup")
+
 # from dotenv import load_dotenv
 # from os import environ
 # from pathlib import Path
