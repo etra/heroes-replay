@@ -24,3 +24,4 @@ BACKUP_PATH = environ.get("BACKUP_PATH", default="./backup")
 # JWT_SECRET_KEY = environ.get("JWT_SECRET_KEY", "random-secret-key-very-random-please-change")
 # JWT_ACCESS_TOKEN_EXPIRES = environ.get("JWT_ACCESS_TOKEN_EXPIRES", 3600)
 
+TEST_OVERWRITE = "True"

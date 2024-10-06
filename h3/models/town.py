@@ -17,7 +17,16 @@ class Town(db.Model):
     
     @staticmethod
     def from_dict(data):
-        return Town(id=data["id"], name=data["name"])
+        town = Town.query.get(data.get("id"))
+        if not town:
+            town = Town(
+            id=data.get("id"),
+            name=data.get("name"),
+            created_time=data.get("created_time"),
+            updated_time=data.get("updated_time")
+            )
+
+        return town
     
 
     @staticmethod

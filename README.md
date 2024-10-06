@@ -22,8 +22,16 @@ export FLASK_RUN_PORT=4432
 export FLASK_RUN_HOST=0.0.0.0
 export FLASK_APP=h3.app:create_app 
 
+export FLASK_APP=h3backend.app:create_app 
+
 flask run
+
+
+
+----
+
 flask db init
+
 flask db migrate
 flask db upgrade
 

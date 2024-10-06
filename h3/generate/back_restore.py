@@ -47,18 +47,17 @@ def restore():
             "Town", "HeroClass", "Hero", 
             "Color", 
             "Template", "Tournament",
-            "Match",
-            "MatchOpponent"
+            # "Match",
+            # "MatchOpponent"
 
         ]
     models = {
         mapper.class_.__name__: mapper.class_
         for mapper in db.Model.registry.mappers
     }
-    print(models.keys())
+
     models = _reorder_models(models, restore_order)
-    print(models.keys())
-    exit()
+
     for model in models.values():
         if hasattr(model, '__tablename__') and hasattr(model, 'from_dict'):
             filename = backup_path / f"{model.__tablename__}.csv"

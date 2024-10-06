@@ -21,8 +21,18 @@ class HeroClass(db.Model):
             "name": self.name,
             }
 
-    def __repr__(self):
-        return f"<HeroClass {self.name}>"
+    @staticmethod
+    def from_dict(data):
+        item = HeroClass.query.get(data.get("id"))
+        if not item:
+            item = HeroClass(
+            id=data.get("id"),
+            name=data.get("name"),
+            created_time=data.get("created_time"),
+            updated_time=data.get("updated_time")
+            )
+
+        return item
 
     @staticmethod
     def create_item(name):
@@ -54,6 +64,21 @@ class Hero(db.Model):
             "hero_class_id": self.hero_class_id,
             "town_id": self.town_id,
             }
+
+    @staticmethod
+    def from_dict(data):
+        item = Hero.query.get(data.get("id"))
+        if not item:
+            item = Hero(
+            id=data.get("id"),
+            name=data.get("name"),
+            hero_class_id=data.get("hero_class_id"),
+            town_id=data.get("town_id"),
+            created_time=data.get("created_time"),
+            updated_time=data.get("updated_time")
+            )
+
+        return item
 
     def __repr__(self):
         return f"<Hero {self.name} of {self.town.name}>"

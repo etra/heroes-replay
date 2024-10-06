@@ -22,6 +22,20 @@ class Tournament(db.Model):
             "updated_time": self.updated_time.strftime("%Y-%m-%d %H:%M:%S"),
             }
 
+    @staticmethod
+    def from_dict(data):
+        item = Tournament.query.get(data.get("id"))
+        if not item:
+            item = Tournament(
+            id=data.get("id"),
+            name=data.get("name"),
+            website=data.get("website"),
+            created_time=data.get("created_time"),
+            updated_time=data.get("updated_time")
+            )
+
+        return item
+
     def __repr__(self):
         return f"<Tournament {self.name}>"
 

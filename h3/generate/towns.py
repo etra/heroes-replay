@@ -1064,6 +1064,7 @@ templates = [
 colors = [
     "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Teal", "Pink"
 ]
+match_types = ["pvp", "pve", 'casting']
 
 players = [
     {
@@ -1080,6 +1081,10 @@ players = [
 
 def generate_static_data():
     """Generating Heroes of Might and Magic III towns"""
+    for match_type in match_types:
+        db.session.add(MatchType.create_item(match_type))
+    db.session.commit()
+
     for color in colors:
         db.session.add(Color.create_item(color))
     db.session.commit()
