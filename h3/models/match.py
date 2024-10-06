@@ -103,14 +103,16 @@ class MatchOpponentInline(InlineFormAdmin):
         )
     }
 
+    #todo: fix prefill - does not work
     def on_form_prefill(self, form, id):
         # Get the existing MatchOpponent from the database
         match_opponent = MatchOpponent.query.get(id)
+        print(f"match_opponent: {match_opponent}")
         # Ensure each form field is populated with the actual values from the database
-        form.player_id.data = match_opponent.player_id
-        form.town_id.data = match_opponent.town_id
-        form.hero_id.data = match_opponent.hero_id
-        form.color_id.data = match_opponent.color_id
+        form.player_id.data = Player.query.get(match_opponent.player_id)
+        form.town_id.data = Town.query.get(match_opponent.town_id)
+        form.hero_id.data = Hero.query.get(match_opponent.hero_id)
+        form.color_id.data = Color.query.get(match_opponent.color_id)
 
         super(MatchOpponentInline, self).on_form_prefill(form, id)
 
@@ -151,10 +153,10 @@ class MatchModelView(ModelView):
         # Ensure each form field is populated with the actual values from the database
         form.template_id.data = match.template_id
         form.tournament_id.data = match.tournament_id
-        form.player_id.data = match.player_id
-        form.town_id.data = match.town_id
-        form.hero_id.data = match.hero_id
-        form.color_id.data = match.color_id
+        form.player_id.data = Player.query.get(match.player_id)
+        form.town_id.data = Town.query.get(match.town_id)
+        form.hero_id.data = Hero.query.get(match.hero_id)
+        form.color_id.data = Color.query.get(match.color_id)
         form.match_type_id.data = match.match_type_id
 
         super(MatchModelView, self).on_form_prefill(form, id)
