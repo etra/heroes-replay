@@ -104,21 +104,19 @@ class MatchOpponentInline(InlineFormAdmin):
     }
 
     #todo: fix prefill - does not work
-    def on_form_prefill(self, form, id):
-        # Get the existing MatchOpponent from the database
-        match_opponent = MatchOpponent.query.get(id)
-        print(f"match_opponent: {match_opponent}")
-        # Ensure each form field is populated with the actual values from the database
-        form.player_id.data = Player.query.get(match_opponent.player_id)
-        form.town_id.data = Town.query.get(match_opponent.town_id)
-        form.hero_id.data = Hero.query.get(match_opponent.hero_id)
-        form.color_id.data = Color.query.get(match_opponent.color_id)
+    # def on_form_prefill(self, form, id):
+    #     # Get the existing MatchOpponent from the database
+    #     match_opponent = MatchOpponent.query.get(id)
+    #     print(f"match_opponent: {match_opponent}")
+    #     # Ensure each form field is populated with the actual values from the database
+    #     form.player_id.data = Player.query.get(match_opponent.player_id)
+    #     form.town_id.data = Town.query.get(match_opponent.town_id)
+    #     form.hero_id.data = Hero.query.get(match_opponent.hero_id)
+    #     form.color_id.data = Color.query.get(match_opponent.color_id)
 
-        super(MatchOpponentInline, self).on_form_prefill(form, id)
+    #     super(MatchOpponentInline, self).on_form_prefill(form, id)
 
     def on_model_change(self, form, model, is_created):
-        current_app.logger.info(f"form: {form.data}")
-        current_app.logger.info(f"form: {model}")
         model.player_id = form.player_id.data.player_id if form.player_id.data else None
         model.town_id = form.town_id.data.id if form.town_id.data else None
         model.hero_id = form.hero_id.data.id if form.hero_id.data else None
@@ -150,15 +148,23 @@ class MatchModelView(ModelView):
     def on_form_prefill(self, form, id):
         # Get the existing Match from the database
         match = Match.query.get(id)
-        # Ensure each form field is populated with the actual values from the database
-        form.template_id.data = match.template_id
-        form.tournament_id.data = match.tournament_id
-        form.player_id.data = Player.query.get(match.player_id)
-        form.town_id.data = Town.query.get(match.town_id)
-        form.hero_id.data = Hero.query.get(match.hero_id)
-        form.color_id.data = Color.query.get(match.color_id)
-        form.match_type_id.data = match.match_type_id
-
+        if match:
+            # Ensure each form field is populated with the actual values from the database
+            form.template_id.data = match.template_id
+            form.tournament_id.data = match.tournament_id
+            form.player_id.data = Player.query.get(match.player_id)
+            form.town_id.data = Town.query.get(match.town_id)
+            form.hero_id.data = Hero.query.get(match.hero_id)
+            form.color_id.data = Color.query.get(match.color_id)
+            form.match_type_id.data = MatchType.query.get(match.match_type_id)
+            current_app.logger.info(f"match: {match.opponents}")
+            if match.opponents:
+                for inline_form, opponent in zip(form.opponents.entries, match.opponents):
+                    inline_form.form.player_id.data = Player.query.get(opponent.player_id)
+                    inline_form.form.town_id.data = Town.query.get(opponent.town_id)
+                    inline_form.form.hero_id.data = Hero.query.get(opponent.hero_id)
+                    inline_form.form.color_id.data = Color.query.get(opponent.color_id)
+                    inline_form.form.id.data = opponent.id
         super(MatchModelView, self).on_form_prefill(form, id)
 
     form_extra_fields = {
@@ -211,8 +217,6 @@ class MatchModelView(ModelView):
     inline_models = (MatchOpponentInline(MatchOpponent),)
 
     def on_model_change(self, form, model, is_created):
-        current_app.logger.info(f"form: {form.data}")
-        current_app.logger.info(f"form: {model}")
         model.template_id = form.template_id.data.id if form.template_id.data else None
         model.tournament_id = form.tournament_id.data.id if form.tournament_id.data else None
         model.player_id = form.player_id.data.player_id if form.player_id.data else None
@@ -220,6 +224,14 @@ class MatchModelView(ModelView):
         model.hero_id = form.hero_id.data.id if form.hero_id.data else None
         model.color_id = form.color_id.data.id if form.color_id.data else None
         model.match_type_id = form.match_type_id.data.id if form.match_type_id.data else None
+
+        left_opponents = []
+        for opponent_form in form.opponents.entries:
+            if opponent_form._should_delete:
+                db.session.delete(opponent_form.object_data)
+            else:
+                model.opponents = [opponent_form.object_data]
+        db.session.commit()
         return super(MatchModelView, self).on_model_change(form, model, is_created)
     
     column_list = ('id', 'match_type_id', 'player_id', 'link', 'created_time', 'updated_time')
