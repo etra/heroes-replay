@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
-import { TownsListComponent } from './towns-list/towns-list.component';
+import { IndexComponent } from './pages/index/index.component';
+import { ResultComponent } from './pages/result/result.component';
+import { DetailComponent } from './pages/detail/detail.component';
 
 export const routes: Routes = [
-    {path: 'towns-list', component: TownsListComponent},
+
+    {path: '', component: IndexComponent},
+    {path: 'results', component: ResultComponent},
+    {path: 'detail/:id', component: DetailComponent},
 ];
