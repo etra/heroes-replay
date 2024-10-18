@@ -1,1 +1,34 @@
-<p>index works!</p>
+<ul *ngIf="data$ | async as colors">
+    <li *ngFor="let color of colors">
+      {{ color.name }}
+    </li>
+  </ul>
+  
+  <!-- Fallback for when data is not yet available -->
+  <div *ngIf="!(data$ | async)">
+    Loading colors...
+  </div>
+<app-layout>
+    <!-- <div class="video-list">
+        <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let video of videos">
+                <img [src]="video.thumbnail" alt="Video Thumbnail" class="video-thumbnail">
+                <mat-grid-tile-footer>
+                    <h4>{{ video.title }}</h4>
+                    <p>{{ video.channel }}</p>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div> -->
+    
+    <!-- <div class="color-list">
+        <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let color of colors">
+                <mat-grid-tile-footer>
+                    <h4>{{ color.id }}</h4>
+                    <p>{{ color.name }}</p>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div> -->
+</app-layout>

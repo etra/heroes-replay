@@ -1,8 +1,11 @@
 <mat-toolbar color="primary">
-    <button mat-button routerLink="" class="home-button">Home</button>
-    <button mat-button routerLink="results" class="videos-button">Videos</button>
-    <mat-form-field *ngIf="!isIndexPage">
-        <input matInput placeholder="Search...">
+    <span>Logo</span>
+    <span class="spacer"></span>
+    <mat-form-field class="search-bar">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Search for videos">
     </mat-form-field>
-</mat-toolbar>
- 
+    <button mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-toolbar>
