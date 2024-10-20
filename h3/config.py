@@ -25,3 +25,5 @@ BACKUP_PATH = environ.get("BACKUP_PATH", default="./backup")
 # JWT_ACCESS_TOKEN_EXPIRES = environ.get("JWT_ACCESS_TOKEN_EXPIRES", 3600)
 
 TEST_OVERWRITE = "True"
+
+UI_EXPORT_PATH = environ.get("UI_EXPORT_PATH", default="./_exports")

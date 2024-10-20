@@ -2,6 +2,7 @@ import click
 from flask.cli import with_appcontext
 from h3.generate.towns import generate_static_data
 from h3.generate.back_restore import backup, restore
+from h3.generate.ui_exporter import export_to_ui
 from flask import current_app as app
 
 @click.command(name="generate")
@@ -26,3 +27,7 @@ def backup_command():
 def restore_command():
     restore()
 
+@click.command(name="export_to_ui")
+@with_appcontext
+def export_to_ui_command():
+    export_to_ui()

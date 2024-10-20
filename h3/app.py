@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from h3.db import db
 from h3.models import *
 from flask_migrate import Migrate
-from h3.generate import generate_data, create_db, backup_command, restore_command
+from h3.generate import generate_data, create_db, backup_command, restore_command, export_to_ui_command
 
 
 
@@ -29,6 +29,7 @@ def create_app():
     app.cli.add_command(create_db)
     app.cli.add_command(backup_command)
     app.cli.add_command(restore_command)
+    app.cli.add_command(export_to_ui_command)
 
 
     return app

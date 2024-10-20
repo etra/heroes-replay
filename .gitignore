@@ -166,3 +166,5 @@ data/*
 old_stuff/*
 backup/*
 .vscode/*
+
+_exports/*

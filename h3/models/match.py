@@ -279,6 +279,9 @@ class Match(db.Model):
             "hero_id": self.hero_id,
             "color_id": self.color_id,
             "link": self.link,
+            "opponents": [opponent.to_dict() for opponent in self.opponents],
+
+            
 
             "created_time": self.created_time.strftime("%Y-%m-%d %H:%M:%S"),
             "updated_time": self.updated_time.strftime("%Y-%m-%d %H:%M:%S"),

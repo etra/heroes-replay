@@ -1,12 +1,23 @@
-<ul *ngIf="data$ | async as colors">
+<ul *ngIf="colorData$ | async as colors">
     <li *ngFor="let color of colors">
       {{ color.name }}
     </li>
   </ul>
   
   <!-- Fallback for when data is not yet available -->
-  <div *ngIf="!(data$ | async)">
+  <div *ngIf="!(colorData$ | async)">
     Loading colors...
+  </div>
+
+  <ul *ngIf="matchData$ | async as matches">
+    <li *ngFor="let match of matches">
+      {{ match.player_id }}
+    </li>
+  </ul>
+  
+  <!-- Fallback for when data is not yet available -->
+  <div *ngIf="!(matchData$ | async)">
+    Loading matches...
   </div>
 <app-layout>
     <!-- <div class="video-list">

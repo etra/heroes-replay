@@ -3,8 +3,9 @@ import { LayoutComponent } from '../../component/layout/layout.component';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule, NgFor } from '@angular/common';
-import { ColorService, Color } from '../../services/color.service';
 import { Observable } from 'rxjs';
+import { MatchAppnonent, Match, Color } from '../../services/data-models';
+import { DataLoaderService } from '../../services/data-loader.service';
 
 @Component({
   selector: 'app-index',
@@ -15,10 +16,11 @@ import { Observable } from 'rxjs';
 })
 export class IndexComponent {
   
-  data$: Observable<Color[]> | undefined;
+  colorData$: Observable<Color[]> | undefined;
+  matchData$: Observable<Match[]> | undefined;
 
   constructor(
-    private colorService: ColorService,
+    private dataLoader: DataLoaderService,
     private cd: ChangeDetectorRef, // Inject ChangeDetectorRef
     private zone: NgZone // Inject NgZone
   ) {}
@@ -36,7 +38,8 @@ export class IndexComponent {
   // }
 
   loadData(): void {
-    this.data$ = this.colorService.getData();
+    this.colorData$ = this.dataLoader.getColorData();
+    this.matchData$ = this.dataLoader.getMatchData();
     // this.colorService.getData().subscribe((data: Color[]) => {
     //   console.log('Data loaded:', data);
     //   this.colors = [...data];
