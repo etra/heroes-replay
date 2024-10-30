@@ -50,3 +50,12 @@ Something to look at: https://www.renpy.org/
 
 
 
+JS json search:
+ - https://www.fusejs.io/
+ - https://lunrjs.com/
+
+
+ Todo:
+ 1. Implement searchInitialization service
+ 2. Implement search service
+ 3. Start putting more data and testing search service

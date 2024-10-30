@@ -10,6 +10,14 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 
+import { APP_INITIALIZER } from '@angular/core';
+// import { SearchInitializerService } from './search-initializer.service';
+
+// export function initializeSearch(searchInitializer: SearchInitializerService) {
+//   return () => searchInitializer.initialize();
+// }
+
+
 registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +25,11 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes, withHashLocation()), 
     provideAnimationsAsync(), 
-    provideHttpClient(), provideNzIcons(icons), provideNzI18n(en_US), importProvidersFrom(FormsModule), provideAnimationsAsync(), provideHttpClient(),
+    provideHttpClient(), 
+    provideNzIcons(icons), 
+    provideNzI18n(en_US), 
+    importProvidersFrom(FormsModule), 
+    provideAnimationsAsync(), 
+    provideHttpClient(),
   ]
 };
