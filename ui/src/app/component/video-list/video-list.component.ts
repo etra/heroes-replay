@@ -1,7 +1,5 @@
 import { Component, ChangeDetectorRef, NgZone,  OnInit, input, Input, OnChanges} from '@angular/core';
 import { Match } from '../../services/data-models';
-import {MatCardModule} from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule, NgFor } from '@angular/common';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzIconModule } from 'ng-zorro-antd/icon';
