@@ -59,3 +59,5 @@ JS json search:
  1. Implement searchInitialization service
  2. Implement search service
  3. Start putting more data and testing search service
+ issue:
+ https://etra.github.io/heroes-replay/img/logo.png - do not set correctly in build
