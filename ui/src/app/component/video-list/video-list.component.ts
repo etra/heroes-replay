@@ -3,11 +3,15 @@ import { Match } from '../../services/data-models';
 import { CommonModule, NgFor } from '@angular/common';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 interface ItemData {
   href: string;
   title: string;
+  thumbnail: string;
   avatar: string;
+  video_id: string;
+  vide_url: SafeResourceUrl;
   description: string;
   content: string;
 }
@@ -26,6 +30,8 @@ export class VideoListComponent implements OnChanges {
 
   data: ItemData[] = [];
 
+  constructor(private sanitizer: DomSanitizer) {}
+
   ngOnChanges(): void {
     this.loadData();
   }
@@ -35,6 +41,9 @@ export class VideoListComponent implements OnChanges {
       this.data = this.matches.map((match) => ({
         href: '#',
         title: `Match between ${match.player_id} vs ${match.opponents[0].player_id}`,
+        thumbnail: match.thumbnail,
+        vide_url: this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + match.video_id),
+        video_id: match.video_id,
         avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
         description: "desciprtion",
         content: "content"
@@ -53,5 +62,18 @@ export class VideoListComponent implements OnChanges {
     //     '(Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
     // }));
   }
+
+  // openModal(item: any): void {
+  //   this.modal.create({
+  //     nzTitle: item.title,
+  //     nzContent: ModalContentComponent,
+  //     nzComponentParams: {
+  //       title: item.title,
+  //       description: item.description,
+  //       content: item.content
+  //     },
+  //     nzFooter: null
+  //   });
+  // }
 
 }

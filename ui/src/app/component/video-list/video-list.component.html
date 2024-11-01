@@ -2,7 +2,7 @@
   @for (item of data; track item) {
     <nz-list-item>
       <nz-list-item-meta>
-        <nz-list-item-meta-avatar [nzSrc]="item.avatar"></nz-list-item-meta-avatar>
+        <!-- <nz-list-item-meta-avatar [nzSrc]="item.avatar"></nz-list-item-meta-avatar> -->
         <nz-list-item-meta-title>
           <a href="{{ item.href }}">{{ item.title }}</a>
         </nz-list-item-meta-title>
@@ -12,7 +12,7 @@
       </nz-list-item-meta>
       {{ item.content }}
       <ul nz-list-item-actions>
-        <nz-list-item-action>
+        <!-- <nz-list-item-action>
           <span nz-icon nzType="star-o" style="margin-right: 8px;"></span>
           156
         </nz-list-item-action>
@@ -23,10 +23,13 @@
         <nz-list-item-action>
           <span nz-icon nzType="star-o" style="margin-right: 8px;"></span>
           2
-        </nz-list-item-action>
+        </nz-list-item-action> -->
       </ul>
       <nz-list-item-extra>
-        <img width="272" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
+        <iframe width="327" height="184" [src]="item.vide_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- <a href="{{ item.href }}">
+          <img width="272" alt="logo" src="{{ item.thumbnail }}" />
+        </a> -->
       </nz-list-item-extra>
     </nz-list-item>
   }

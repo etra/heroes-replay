@@ -9,6 +9,7 @@ from h3.models.tournament import Tournament
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.fields import  QuerySelectField 
 from flask_admin.model.form import InlineFormAdmin
+from urllib.parse import urlparse, parse_qs
 from flask import current_app
 
 class MatchType(db.Model):
@@ -227,10 +228,12 @@ class MatchModelView(ModelView):
 
         left_opponents = []
         for opponent_form in form.opponents.entries:
+            print(opponent_form.object_data)
             if opponent_form._should_delete:
                 db.session.delete(opponent_form.object_data)
-            else:
+            elif opponent_form.object_data is not None:
                 model.opponents = [opponent_form.object_data]
+                
         db.session.commit()
         return super(MatchModelView, self).on_model_change(form, model, is_created)
     
@@ -271,6 +274,27 @@ class Match(db.Model):
     created_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
     updated_time = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
 
+    @property
+    def video_id(self):
+        # import re
+        # Parse the URL and check if it contains 'v' as a query parameter
+        parsed_url = urlparse(self.link)
+        if parsed_url.hostname in ['www.youtube.com', 'youtube.com']:
+            query_params = parse_qs(parsed_url.query)
+            if 'v' in query_params:
+                return query_params['v'][0]
+    
+        # Check for youtu.be short URL format
+        if parsed_url.hostname == 'youtu.be':
+            return parsed_url.path[1:]  # Remove the leading '/'
+
+        # If no match is found, return None
+        return None
+
+    @property
+    def thumbnail(self):
+        return f"https://i.ytimg.com/vi_webp/{self.video_id}/sddefault.webp"
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -279,6 +303,8 @@ class Match(db.Model):
             "hero_id": self.hero_id,
             "color_id": self.color_id,
             "link": self.link,
+            "thumbnail": self.thumbnail,
+            "video_id": self.video_id,
             "opponents": [opponent.to_dict() for opponent in self.opponents],
 
             

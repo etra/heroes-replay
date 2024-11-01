@@ -5,6 +5,8 @@ export interface Match {
     hero_id: string;
     color_id: string;
     link: string;
+    thumbnail: string;
+    video_id: string;
     opponents: MatchAppnonent[];
     created_time: string;
     updated_time: string;
