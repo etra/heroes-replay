@@ -1,0 +1,6 @@
+/* Increase the overall size of the nz-select */
+.ant-select {
+    font-size: 16px; /* Increase text size */
+    width: 150px;
+  }
+  

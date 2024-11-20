@@ -1,0 +1,10 @@
+<nz-select nzShowSearch nzAllowClear 
+    nzMode="multiple"
+    nzPlaceHolder="Inserted are removed" 
+    [(ngModel)]="listOfSelected"
+    (ngModelChange)="onFilterChange($event, filter_key)"
+    >
+    @for (option of listOfOption; track option) {
+      <nz-option [nzLabel]="option" [nzValue]="option"></nz-option>
+    }
+</nz-select>

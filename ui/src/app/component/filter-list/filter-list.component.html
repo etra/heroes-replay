@@ -1,0 +1,17 @@
+<p>filter-list works!</p>
+@for (filter of listOfFilters; track filter) {
+  <app-filter-item [filter_key]="filter"></app-filter-item>
+}
+
+<!-- <nz-select nzShowSearch nzAllowClear 
+    nzMode="multiple"
+    nzPlaceHolder="Inserted are removed" 
+    [(ngModel)]="listOfSelected"
+    (ngModelChange)="onFilterChange($event,'player_id')"
+    >
+    @for (option of listOfOption; track option) {
+      <nz-option [nzLabel]="option" [nzValue]="option"></nz-option>
+    }
+  </nz-select>
+
+  <p>Selected Values: {{ listOfSelected }}</p>   -->
