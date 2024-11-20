@@ -9,13 +9,9 @@ import { en_US, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
-
+import { DataService } from './services/data.service';
 import { APP_INITIALIZER } from '@angular/core';
-// import { SearchInitializerService } from './search-initializer.service';
-
-// export function initializeSearch(searchInitializer: SearchInitializerService) {
-//   return () => searchInitializer.initialize();
-// }
+import { initializeApp } from './initialize-app';
 
 
 registerLocaleData(en);
@@ -31,5 +27,12 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(FormsModule), 
     provideAnimationsAsync(), 
     provideHttpClient(),
+    DataService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [DataService],
+      multi: true,
+    },
   ]
 };

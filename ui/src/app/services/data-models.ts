@@ -1,4 +1,5 @@
 export interface Match {
+    [key: string]: any; 
     id: number;
     player_id: string;
     town_id: string;
