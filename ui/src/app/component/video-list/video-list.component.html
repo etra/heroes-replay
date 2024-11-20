@@ -4,13 +4,22 @@
       <nz-list-item-meta>
         <!-- <nz-list-item-meta-avatar [nzSrc]="item.avatar"></nz-list-item-meta-avatar> -->
         <nz-list-item-meta-title>
-          <a href="{{ item.href }}">{{ item.title }}</a>
+          {{ item.match.video_title}}
         </nz-list-item-meta-title>
         <nz-list-item-meta-description>
-          {{ item.description }}
+          <b>Player POV</b><br/>
+          Player: {{ item.match.player.name }}<br/>
+          Town: {{ item.match.town.name }}<br/>
+          Hero: {{ item.match.hero.name }}<br/>
+          <b>Apponont:</b><br/>
+          @for (opponent of item.match.opponents; track opponent) {
+            Player: {{ opponent.player_id }}<br/>
+            Town: {{ opponent.town_id }}<br/>
+            Hero: {{ opponent.hero_id }}<br/>
+          }
+          
         </nz-list-item-meta-description>
       </nz-list-item-meta>
-      {{ item.content }}
       <ul nz-list-item-actions>
         <!-- <nz-list-item-action>
           <span nz-icon nzType="star-o" style="margin-right: 8px;"></span>

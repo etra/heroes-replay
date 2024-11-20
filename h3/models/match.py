@@ -9,6 +9,9 @@ from h3.models.tournament import Tournament
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.fields import  QuerySelectField 
 from flask_admin.model.form import InlineFormAdmin
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+
 from urllib.parse import urlparse, parse_qs
 from flask import current_app
 
@@ -241,7 +244,10 @@ class MatchModelView(ModelView):
     form_columns = (
         'match_type_id',
 
-        'link', 'template_id', 'tournament_id', 
+        'link', 'video_title', 'videos_short_description',
+        
+        
+        'template_id', 'tournament_id', 
         
         'player_id', 'town_id', 'hero_id', 'color_id', 
         'opponents'
@@ -252,21 +258,27 @@ class Match(db.Model):
     __tablename__ = 'matches'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-
+    
     #match information
-    link = db.Column(db.String(512), nullable=False)
     match_type_id = db.Column(db.String(12), nullable=True)
     template_id = db.Column(db.String(64), nullable=False)
     tournament_id = db.Column(db.String(64), nullable=True)
 
     
+    #video info
+    link = db.Column(db.String(512), nullable=False)
+    video_title = db.Column(db.String(512), nullable=True)
+    videos_short_description = db.Column(db.String(512), nullable=True)
+
     #POV information
     player_id = db.Column(db.String(60), nullable=False)
+    # player = db.relationship('Player', backref='matches', lazy=True)
+    player: Mapped["Player"] = db.relationship(primaryjoin="foreign(Match.player_id) == Player.player_id", uselist=False)
     town_id = db.Column(db.String(32), nullable=True)
+    town: Mapped["Town"] = db.relationship(primaryjoin="foreign(Match.town_id) == Town.id", uselist=False)
     hero_id = db.Column(db.String(32), nullable=True)
+    hero: Mapped["Hero"] = db.relationship(primaryjoin="foreign(Match.hero_id) == Hero.id", uselist=False)
     color_id = db.Column(db.String(12), nullable=True)
-    
-
 
     #opponents information
     opponents = db.relationship('MatchOpponent', backref='match', lazy=True)
@@ -299,10 +311,14 @@ class Match(db.Model):
         return {
             "id": self.id,
             "player_id": self.player_id,
+            "player": self.player.to_dict(),
             "town_id": self.town_id,
+            "town": self.town.to_dict(),
             "hero_id": self.hero_id,
+            "hero": self.hero.to_dict(),
             "color_id": self.color_id,
             "link": self.link,
+            "video_title": self.video_title,
             "thumbnail": self.thumbnail,
             "video_id": self.video_id,
             "opponents": [opponent.to_dict() for opponent in self.opponents],

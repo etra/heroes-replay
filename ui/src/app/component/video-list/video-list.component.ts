@@ -8,6 +8,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 interface ItemData {
   href: string;
   title: string;
+  match: Match;
   thumbnail: string;
   avatar: string;
   video_id: string;
@@ -40,7 +41,8 @@ export class VideoListComponent implements OnChanges {
     if (this.matches) {  // Check if matches is not null
       this.data = this.matches.map((match) => ({
         href: '#',
-        title: `Match between ${match.player_id} vs ${match.opponents[0].player_id}`,
+        match: match,
+        title: `${match.player.name} as ${match.hero.name} of ${match.town.name}`,
         thumbnail: match.thumbnail,
         vide_url: this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + match.video_id),
         video_id: match.video_id,
