@@ -49,17 +49,10 @@ https://heroes.thelazy.net/index.php/Hero_class
 Something to look at: https://www.renpy.org/
 
 
-
-JS json search:
- - https://www.fusejs.io/
- - https://lunrjs.com/
-
-
  Todo:
- 1. Implement searchInitialization service
- 2. Implement search service
- 3. Start putting more data and testing search service
- 
- Issues:
- 1. How to serve project locally from dist (docs) directory so we could test it before uploading to github
- 
+1. Player page - UI
+2. Opponent information (player + town + hero)
+3. Hero + Town Images (???)
+4. Fix filters by adding placeholder and move it to left drawer.
+5. Mobile UI to fix
+6. Add more videos
