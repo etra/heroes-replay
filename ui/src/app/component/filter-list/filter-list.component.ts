@@ -6,10 +6,16 @@ import { OnChanges } from '@angular/core';
 import { Input } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { FilterItemComponent } from '../filter-item/filter-item.component';
+import {NzMenuModule} from 'ng-zorro-antd/menu';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+
+
 @Component({
   selector: 'app-filter-list',
   standalone: true,
-  imports: [FilterItemComponent],
+  imports: [FilterItemComponent, NzMenuModule, NzCardModule, NzGridModule, NzListModule],
   templateUrl: './filter-list.component.html',
   styleUrl: './filter-list.component.css'
 })

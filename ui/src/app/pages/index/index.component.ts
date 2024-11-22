@@ -6,10 +6,13 @@ import { DataLoaderService } from '../../services/data-loader.service';
 import { VideoListComponent } from '../../component/video-list/video-list.component';
 import { FilterListComponent } from '../../component/filter-list/filter-list.component';
 import { DataService } from '../../services/data.service';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+
+
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, VideoListComponent, FilterListComponent],
+  imports: [CommonModule, VideoListComponent, FilterListComponent, NzLayoutModule],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })

@@ -2,8 +2,11 @@ import { Component, ChangeDetectorRef, NgZone,  OnInit, input, Input, OnChanges}
 import { Match } from '../../services/data-models';
 import { CommonModule, NgFor } from '@angular/common';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 interface ItemData {
   href: string;
@@ -20,7 +23,8 @@ interface ItemData {
 @Component({
   selector: 'app-video-list',
   standalone: true,
-  imports: [CommonModule, NzListModule, NzIconModule],
+  imports: [CommonModule, NzCardModule, NzGridModule, NzListModule, NzIconModule, NzAvatarModule],
+
   templateUrl: './video-list.component.html',
   styleUrl: './video-list.component.css'
 })

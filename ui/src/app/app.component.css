@@ -9,24 +9,6 @@
   height: 100vh;
 }
 
-.menu-sidebar {
-  position: relative;
-  z-index: 10;
-  min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0,21,41,.35);
-}
-
-.header-trigger {
-  height: 64px;
-  padding: 20px 24px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all .3s,padding 0s;
-}
-
-.trigger:hover {
-  color: #1890ff;
-}
 
 .sidebar-logo {
   position: relative;
@@ -69,12 +51,6 @@ nz-header {
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
 }
 
-nz-content {
-  margin: 24px;
-}
 
-.inner-content {
-  padding: 24px;
-  background: #fff;
-  height: 100%;
-}
+
+

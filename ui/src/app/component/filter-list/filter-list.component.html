@@ -1,7 +1,12 @@
-<p>filter-list works!</p>
+<nz-list nzGrid>
+  <div nz-row >
 @for (filter of listOfFilters; track filter) {
-  <app-filter-item [filter_key]="filter"></app-filter-item>
+  <nz-list-item>
+      <app-filter-item [filter_key]="filter"></app-filter-item>
+  </nz-list-item>
 }
+  </div>
+</nz-list>
 
 <!-- <nz-select nzShowSearch nzAllowClear 
     nzMode="multiple"

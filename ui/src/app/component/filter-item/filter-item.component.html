@@ -1,6 +1,6 @@
 <nz-select nzShowSearch nzAllowClear 
     nzMode="multiple"
-    nzPlaceHolder="Inserted are removed" 
+    nzPlaceHolder="{{filter_key}}" 
     [(ngModel)]="listOfSelected"
     (ngModelChange)="onFilterChange($event, filter_key)"
     >

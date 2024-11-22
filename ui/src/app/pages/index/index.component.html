@@ -1,2 +1,8 @@
-<app-filter-list></app-filter-list>
-<app-video-list [matches]="matchData | async"></app-video-list>
+<nz-layout>
+    <nz-sider>
+        <app-filter-list></app-filter-list>
+    </nz-sider>
+    <nz-content class="inner-content">
+        <app-video-list [matches]="matchData | async"></app-video-list>
+    </nz-content>
+</nz-layout>
