@@ -1,35 +1,66 @@
 <div *ngIf="!match">
-  loading...
+  <nz-card style="width: 350px;" [nzLoading]="loading"
+    nzHoverable 
+  >
+    <nz-card-meta
+      nzTitle="Card title"
+      
+    ></nz-card-meta>
+  </nz-card>
 </div>
 <div *ngIf="match">
-  <nz-card [nzTitle]="match.video_title" 
-  nzHoverable style="width:350px" 
-  [nzCover]="coverTemplate"
-  [nzActions]="[actionPov, actionOponent]"
+  <nz-card 
+    [nzTitle]="match.video_title" 
+    nzHoverable style="width:400px" 
+    [nzCover]="coverTemplate"
   >
+  <nz-table #basicTable [nzData]="match.opponents" [nzFrontPagination]="false">
+    <!-- <thead>
+      <tr>
+        <th>Player</th>
+        <th>Color</th>
+        <th>Town</th>
+        <th>Hero</th>
+      </tr>
+    </thead> -->
+    <tbody>
+      <tr >
+        <td>{{ match.player.name }}</td>
+        <td>
+          <img src="img/assets/flags/{{ match.color_id }}.png" alt="{{ match.color_id }}" >
+        </td>
+        <td>
+          <img src="img/assets/towns/{{ match.town_id }}.png" alt="{{ match.town_id }}" >
+          {{ match.town.name }}
+        </td>
+        <td>
+          <img src="img/assets/heroes/{{ match.hero_id }}.png" alt="{{ match.hero.name }}" >
+          {{ match.hero.name }}
+        </td>
+      </tr>
+
+      @for (data of basicTable.data; track data) {
+        <tr>
+          <td>{{ data.player_id }}</td>
+          <td>
+            <img src="img/assets/flags/{{ data.color_id }}.png" alt="{{ data.color_id }}" >
+          </td>
+          <td>
+            <img src="img/assets/towns/{{ data.town_id }}.png" alt="{{ data.town_id }}" >
+            {{ data.town_id }}
+          </td>
+          <td>
+            <img src="img/assets/heroes/{{ data.hero_id }}.png" alt="{{ data.hero_id }}" >
+            {{ data.hero_id }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
 </nz-card>
 <ng-template #coverTemplate>
   <iframe width="327" height="184" [src]="match.vide_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </ng-template>
-  <ng-template #actionPov>
-  
-  Player: {{ match.player.name }}<br/>
-  <div class="town-icon {{ match.town_id }}">&nbsp;</div>
-  Town: {{ match.town.name }}<br/>
-  Hero: {{ match.hero.name }}<br/>
-  
-  </ng-template>
-  <ng-template #actionOponent>
-  
-  @for (opponent of match.opponents; track opponent) {
-  
-  Apponont: {{ opponent.player_id }}<br/>
-  Town: {{ opponent.town_id }}<br/>
-  Hero: {{ opponent.hero_id }}<br/>
-  <div class="town-icon {{ opponent.town_id }}">&nbsp;</div> 
-  }
-  </ng-template>
-  
+</ng-template>
   
 </div>
 
