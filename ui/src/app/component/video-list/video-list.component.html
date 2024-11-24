@@ -1,38 +1,10 @@
 <nz-list nzGrid>
   <div nz-row [nzGutter]="16">
-  @for (item of data; track item) {
+  @for (match of matches; track match) {
     <div nz-col class="gutter-row">
       <nz-list-item>
-        <nz-card [nzTitle]="item.match.video_title" 
-                  nzHoverable style="width:350px" 
-                  [nzCover]="coverTemplate"
-                  [nzActions]="[actionPov, actionOponent]"
-                  >
-          
-          
-          
-        </nz-card>
-        <ng-template #coverTemplate>
-          <iframe width="327" height="184" [src]="item.vide_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </ng-template>
-        <ng-template #actionPov>
-          
-          Player: {{ item.match.player.name }}<br/>
-          <div class="town-icon {{ item.match.town_id }}">&nbsp;</div>
-            Town: {{ item.match.town.name }}<br/>
-          Hero: {{ item.match.hero.name }}<br/>
-          
-        </ng-template>
-        <ng-template #actionOponent>
-          
-          @for (opponent of item.match.opponents; track opponent) {
-            
-            Apponont: {{ opponent.player_id }}<br/>
-            Town: {{ opponent.town_id }}<br/>
-            Hero: {{ opponent.hero_id }}<br/>
-            <div class="town-icon {{ opponent.town_id }}">&nbsp;</div> 
-          }
-        </ng-template>
+        <!-- {{ match.player_id }} -->
+        <app-video-item [inputMatch]="match"></app-video-item>
       </nz-list-item>
     </div>
   }

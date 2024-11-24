@@ -22,7 +22,6 @@ export class DataService {
   filteredItems$: Observable<any[]> = this.filteredItemsSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
-    // Listen for query parameter changes
     this.route.queryParamMap.subscribe((params) => {
       this.filters = {}; // Reset filters
       params.keys.forEach((key) => {
@@ -41,8 +40,7 @@ export class DataService {
       tap((response) => {
         this.database = response;
         this.applyFilters(); // Apply filters immediately
-        console.log('Database loaded');
-        console.log(this.database);
+        console.log('Database loaded', this.database);
       }),
       catchError(this.handleError<any[]>('getData', []))
     );
@@ -69,6 +67,9 @@ export class DataService {
 
   // Apply filters to items
   private applyFilters(): void {
+    if (!this.database) {
+      return;
+    }
     let filteredItems: Match[] = this.database.matches;
 
     // Apply each filter with OR logic
@@ -109,9 +110,6 @@ getFilters(): { [key: string]: any } {
   }
     
   getFilterOptions(filter_key: string): string[] {
-    console.log(this.database.filters);
-    console.log('Filter key:', filter_key);
-    console.log('Database:', this.database.filters[filter_key]);
     return this.database.filters[filter_key];
   }
 
