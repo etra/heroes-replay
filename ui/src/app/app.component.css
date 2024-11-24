@@ -37,8 +37,8 @@
   vertical-align: middle;
 }
 
-nz-header {
-  padding: 0;
+.header {
+  position: fixed;
   width: 100%;
   z-index: 2;
 }
@@ -51,6 +51,9 @@ nz-header {
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
 }
 
+.app-cotent {
+  padding-top: 64px;
+}
 nz-footer {
   color:#fff;
   position: bottom;
@@ -62,4 +65,7 @@ nz-footer {
   vertical-align: middle;
 }
 
-
+.footer {
+  position: relative;
+  width: 100%;
+}

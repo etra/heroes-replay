@@ -1,5 +1,5 @@
 <nz-layout>
-    <nz-sider>
+    <nz-sider nzCollapsible nzBreakpoint="md" [nzCollapsedWidth]="0">
         <nz-content >
             <app-filter-list></app-filter-list>
         </nz-content>
@@ -7,4 +7,5 @@
     <nz-content class="inner-content">
         <app-video-list [inputMatches]="matchData | async"></app-video-list>
     </nz-content>
+
 </nz-layout>

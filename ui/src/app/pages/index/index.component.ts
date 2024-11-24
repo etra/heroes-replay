@@ -7,26 +7,39 @@ import { FilterListComponent } from '../../component/filter-list/filter-list.com
 import { DataService } from '../../services/data.service';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { OnInit } from '@angular/core';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { ViewportRuler } from '@angular/cdk/scrolling';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, VideoListComponent, FilterListComponent, NzLayoutModule],
+  imports: [CommonModule, NzMenuModule, NzIconModule, VideoListComponent, FilterListComponent, NzLayoutModule],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })
 export class IndexComponent {
   
   matchData: Observable<Match[]> | undefined;
-
+  isCollapsed: boolean = true;
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private viewportRuler: ViewportRuler
   ) {}
 
   ngOnInit() {
-
+    
     this.matchData = this.dataService.getItems();
-    // this.loadData();
+    this.viewportRuler.change(100).subscribe(() => {
+      this.setInitialState();
+    });
+  }
+
+  private setInitialState(): void {
+    const viewportWidth = this.viewportRuler.getViewportSize().width;
+    this.isCollapsed = viewportWidth < 768; // Example: Collapse on smaller screens
+    console.log(this.viewportRuler.getViewportSize().width);
+    console.log(this.isCollapsed);
   }
 
   loadData(): void {
