@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnChanges, SimpleChanges} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Match } from '../../services/data-models';
@@ -6,7 +6,7 @@ import { VideoListComponent } from '../../component/video-list/video-list.compon
 import { FilterListComponent } from '../../component/filter-list/filter-list.component';
 import { DataService } from '../../services/data.service';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-index',
@@ -24,6 +24,15 @@ export class IndexComponent {
   ) {}
 
   ngOnInit() {
+
     this.matchData = this.dataService.getItems();
+    // this.loadData();
+  }
+
+  loadData(): void {
+    // this.dataService.filteredItems$.subscribe((filteredData) => {
+    //   this.matchData = filteredData;
+    // });
+    
   }
 }

@@ -67,9 +67,11 @@ export class DataService {
 
   // Apply filters to items
   private applyFilters(): void {
+    
     if (!this.database) {
       return;
     }
+    console.log('Applying filters', this.filters);
     let filteredItems: Match[] = this.database.matches;
 
     // Apply each filter with OR logic
@@ -105,7 +107,7 @@ getFilters(): { [key: string]: any } {
   return this.filters;
 }
 
-  getItems(): Observable<any[]> {
+  getItems(): Observable<Match[]> {
     return this.filteredItems$;
   }
     

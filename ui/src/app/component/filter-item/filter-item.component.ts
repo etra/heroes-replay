@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './filter-item.component.html',
   styleUrl: './filter-item.component.css'
 })
-export class FilterItemComponent implements OnChanges {
+export class FilterItemComponent {
   
   constructor(private dataService: DataService) {}
 
@@ -20,13 +20,8 @@ export class FilterItemComponent implements OnChanges {
 
   ngOnInit() {
     this.listOfOption = this.dataService.getFilterOptions(this.filter_key);
-    
-    //TODO: Pull options from this.listOfOption = DataService.getFilterOptions(this.filter_key);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log('FilterListComponent ngOnChanges', this.listOfSelected);
-  }
 
   onFilterChange(values: string[], key: string): void {
     this.dataService.updateFilter(key, values);

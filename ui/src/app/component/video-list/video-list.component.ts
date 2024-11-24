@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, NgZone,  OnInit, input, Input, OnChanges} from '@angular/core';
+import { Component, ChangeDetectorRef, NgZone,  OnInit, input, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { Match } from '../../services/data-models';
 import { CommonModule } from '@angular/common';
 import { NzListModule } from 'ng-zorro-antd/list';
@@ -16,17 +16,15 @@ import { Observable } from 'rxjs';
   styleUrl: './video-list.component.css'
 })
 
-export class VideoListComponent {
+export class VideoListComponent implements OnChanges{
   // matchData: Observable<Match[]> | undefined;
   @Input() inputMatches: Match[] | null = null;
 
   matches: Match[] = [];
 
-
-  // @Input() matches: Match[] | undefined;
-  ngOnInit() {
+  ngOnChanges(): void {
     if (this.inputMatches) {
-        this.matches = this.inputMatches;
+      this.matches = this.inputMatches;
     }
   }
 }
