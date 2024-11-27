@@ -39,11 +39,15 @@ export interface Match {
 }
 
 export interface MatchAppnonent {
+    [key: string]: any; 
     id: number;
     match_id: number;
     player_id: string;
+    player: Player;
     town_id: string;
+    town: Town;
     hero_id: string;
+    hero: Hero;
     color_id: string;
 }
 

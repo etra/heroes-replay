@@ -9,6 +9,9 @@ import { Match } from '../../services/data-models';
 import { NgIf } from '@angular/common';
 import { Observable } from 'rxjs';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzImageModule } from 'ng-zorro-antd/image';
+import { RouterLink } from '@angular/router';
+
 
 
 interface ItemData extends Match {
@@ -18,7 +21,7 @@ interface ItemData extends Match {
 @Component({
   selector: 'app-video-item',
   standalone: true,
-  imports: [NzCardModule, NgIf, NzTableModule],
+  imports: [NzCardModule, NgIf, NzTableModule, NzImageModule, RouterLink],
   templateUrl: './video-item.component.html',
   styleUrl: './video-item.component.css'
 })

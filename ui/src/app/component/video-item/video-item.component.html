@@ -1,5 +1,5 @@
 <div *ngIf="!match">
-  <nz-card style="width: 350px;" [nzLoading]="loading"
+  <nz-card style="width: 400px;" [nzLoading]="loading"
     nzHoverable 
   >
     <nz-card-meta
@@ -9,23 +9,19 @@
   </nz-card>
 </div>
 <div *ngIf="match">
-  <nz-card 
+    <nz-card 
+    style="width:400px" 
     [nzTitle]="match.video_title" 
-    nzHoverable style="width:400px" 
     [nzCover]="coverTemplate"
   >
-  <nz-table #basicTable [nzData]="match.opponents" [nzFrontPagination]="false">
-    <!-- <thead>
-      <tr>
-        <th>Player</th>
-        <th>Color</th>
-        <th>Town</th>
-        <th>Hero</th>
-      </tr>
-    </thead> -->
+  <nz-table class="match-info" #basicTable [nzData]="match.opponents" [nzFrontPagination]="false">
     <tbody>
       <tr >
-        <td>{{ match.player.name }}</td>
+        <td>
+          <a class="button" routerLink="/player/{{match.player_id}}">
+            {{ match.player.name }}
+          </a>
+        </td>
         <td>
           <img src="img/assets/flags/{{ match.color_id }}.png" alt="{{ match.color_id }}" >
         </td>
@@ -41,25 +37,36 @@
 
       @for (data of basicTable.data; track data) {
         <tr>
-          <td>{{ data.player_id }}</td>
+          <td>
+            <a class="button" routerLink="/player/{{data.player_id}}">
+              {{ data.player.name }}
+            </a>
+          </td>
           <td>
             <img src="img/assets/flags/{{ data.color_id }}.png" alt="{{ data.color_id }}" >
           </td>
           <td>
-            <img src="img/assets/towns/{{ data.town_id }}.png" alt="{{ data.town_id }}" >
-            {{ data.town_id }}
+            <img src="img/assets/towns/{{ data.town_id }}.png" alt="{{ data.town.name }}" >
+            {{ data.town.name }}
           </td>
           <td>
-            <img src="img/assets/heroes/{{ data.hero_id }}.png" alt="{{ data.hero_id }}" >
-            {{ data.hero_id }}
+            <img src="img/assets/heroes/{{ data.hero_id }}.png" alt="{{ data.hero.name }}" >
+            {{ data.hero.name }}
           </td>
         </tr>
       }
     </tbody>
   </nz-table>
 </nz-card>
+
+  
+    
 <ng-template #coverTemplate>
-  <iframe width="327" height="184" [src]="match.vide_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <a class="button" routerLink="/match/{{match.video_id}}">
+    <img width="400px" src="{{ match.thumbnail }}" />
+  </a>
+  <!-- <img nz-image  height="300px" nzSrc="{{ match.thumbnail }}" alt=""/> -->
+  <!-- <iframe width="400" height="184" [src]="match.vide_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 </ng-template>
   
 </div>

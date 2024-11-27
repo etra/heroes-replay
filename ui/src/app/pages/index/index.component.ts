@@ -10,6 +10,10 @@ import { OnInit } from '@angular/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { provideRouter } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-index',

@@ -133,8 +133,11 @@ class MatchOpponent(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'), nullable=False)
     player_id = db.Column(db.String(60), nullable=False)
+    player: Mapped["Player"] = db.relationship(primaryjoin="foreign(MatchOpponent.player_id) == Player.player_id", uselist=False)
     town_id = db.Column(db.String(32), nullable=False)
+    town: Mapped["Town"] = db.relationship(primaryjoin="foreign(MatchOpponent.town_id) == Town.id", uselist=False)
     hero_id = db.Column(db.String(32), nullable=False)
+    hero: Mapped["Hero"] = db.relationship(primaryjoin="foreign(MatchOpponent.hero_id) == Hero.id", uselist=False)
     color_id = db.Column(db.String(12), nullable=False)
 
 
@@ -143,8 +146,11 @@ class MatchOpponent(db.Model):
             "id": self.id,
             "match_id": self.match_id,
             "player_id": self.player_id,
+            "player": self.player.to_dict(),
             "town_id": self.town_id,
+            "town": self.town.to_dict(),
             "hero_id": self.hero_id,
+            "hero": self.hero.to_dict(),
             "color_id": self.color_id,
         }
 
@@ -272,7 +278,6 @@ class Match(db.Model):
 
     #POV information
     player_id = db.Column(db.String(60), nullable=False)
-    # player = db.relationship('Player', backref='matches', lazy=True)
     player: Mapped["Player"] = db.relationship(primaryjoin="foreign(Match.player_id) == Player.player_id", uselist=False)
     town_id = db.Column(db.String(32), nullable=True)
     town: Mapped["Town"] = db.relationship(primaryjoin="foreign(Match.town_id) == Town.id", uselist=False)

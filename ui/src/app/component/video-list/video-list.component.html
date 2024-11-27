@@ -8,5 +8,13 @@
       </nz-list-item>
     </div>
   }
+  @for (match of matches; track match) {
+    <div nz-col class="gutter-row">
+      <nz-list-item>
+        <!-- {{ match.player_id }} -->
+        <app-video-item [inputMatch]="match"></app-video-item>
+      </nz-list-item>
+    </div>
+  }
   </div>
 </nz-list>

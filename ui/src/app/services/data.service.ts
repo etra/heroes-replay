@@ -110,6 +110,10 @@ getFilters(): { [key: string]: any } {
   getItems(): Observable<Match[]> {
     return this.filteredItems$;
   }
+
+  getItemByVideoId(video_id: string): Match | undefined {
+    return this.database.matches.find((item: Match) => item.video_id === video_id);
+  }
     
   getFilterOptions(filter_key: string): string[] {
     return this.database.filters[filter_key];
