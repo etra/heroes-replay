@@ -1,1 +1,9 @@
-<p>player works!</p>
+<nz-layout>
+    <nz-content *ngIf="player">
+        <nz-page-header nzBackIcon nzTitle="{{player.name}}"></nz-page-header>
+        <app-player-card [player]="player"></app-player-card>
+    </nz-content>
+    <nz-content *ngIf="matches">
+        <app-video-list [inputMatches]="matches"></app-video-list>
+    </nz-content>
+</nz-layout>

@@ -10,7 +10,7 @@ import { NgIf } from '@angular/common';
 import { Observable } from 'rxjs';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzImageModule } from 'ng-zorro-antd/image';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 
 
@@ -21,13 +21,14 @@ interface ItemData extends Match {
 @Component({
   selector: 'app-video-item',
   standalone: true,
-  imports: [NzCardModule, NgIf, NzTableModule, NzImageModule, RouterLink],
+  imports: [NzCardModule, NgIf, NzTableModule, NzImageModule, RouterModule],
   templateUrl: './video-item.component.html',
   styleUrl: './video-item.component.css'
 })
 
 export class VideoItemComponent{
   @Input() inputMatch: Match | undefined = undefined;
+  @Input() detailPage: boolean = false;
 
   match: ItemData | undefined = undefined;
   loading: boolean = true;

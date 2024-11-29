@@ -28,6 +28,7 @@ def export_to_ui():
     data = {
         "matches": [match.to_dict() for match in Match.query.all()],
         "filters": filters,
+        "players": [player.to_dict() for player in Player.query.all()],
     }
     path = Path(app.config['UI_EXPORT_PATH'])
     path.mkdir(parents=True, exist_ok=True)

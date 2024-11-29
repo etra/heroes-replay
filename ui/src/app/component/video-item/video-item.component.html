@@ -18,7 +18,7 @@
     <tbody>
       <tr >
         <td>
-          <a class="button" routerLink="/player/{{match.player_id}}">
+          <a class="button" [routerLink]="['/player', match.player_id]">
             {{ match.player.name }}
           </a>
         </td>
@@ -38,7 +38,7 @@
       @for (data of basicTable.data; track data) {
         <tr>
           <td>
-            <a class="button" routerLink="/player/{{data.player_id}}">
+            <a class="button" [routerLink]="['/player', data.player_id]">
               {{ data.player.name }}
             </a>
           </td>
@@ -62,11 +62,10 @@
   
     
 <ng-template #coverTemplate>
-  <a class="button" routerLink="/match/{{match.video_id}}">
+  <a class="button" [routerLink]="['/match', match.video_id]" *ngIf="!detailPage">
     <img width="400px" src="{{ match.thumbnail }}" />
   </a>
-  <!-- <img nz-image  height="300px" nzSrc="{{ match.thumbnail }}" alt=""/> -->
-  <!-- <iframe width="400" height="184" [src]="match.vide_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+  <iframe *ngIf="detailPage" width="400" height="184" [src]="match.vide_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </ng-template>
   
 </div>

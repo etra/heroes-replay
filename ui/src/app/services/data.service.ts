@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { MatchAppnonent, Match, Color } from './data-models';
+import { MatchAppnonent, Match, Color, Player } from './data-models';
 
 @Injectable({
   providedIn: 'root',
@@ -114,7 +114,16 @@ getFilters(): { [key: string]: any } {
   getItemByVideoId(video_id: string): Match | undefined {
     return this.database.matches.find((item: Match) => item.video_id === video_id);
   }
-    
+
+  getPlayerById(player_id: string): Player | undefined {
+    return this.database.players.find((item: Player) => item.player_id === player_id);
+  }
+
+  getPlayerMatches(player_id: string): Match[] | undefined {
+    return this.database.matches.filter((item: Match) => item.player_id === player_id);    
+  }
+
+
   getFilterOptions(filter_key: string): string[] {
     return this.database.filters[filter_key];
   }

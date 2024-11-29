@@ -1,11 +1,14 @@
 <nz-layout>
   <nz-header class="header">
     <div class="sidebar-logo">
-      <img src="img/logo.png" alt="logo">
+      <a class="button" [routerLink]="['/']">
+        <img src="img/logo.png" alt="logo">
+      </a>
       <h1>HOMM3 - PVP replay</h1>  
   </div>
   </nz-header>
   <nz-layout class="app-cotent">
+    
     <router-outlet></router-outlet>
   </nz-layout>
   <nz-footer class="footer">

@@ -16,7 +16,7 @@ import { provideRouter } from '@angular/router';
 
 
 @Component({
-  selector: 'app-index',
+  selector: 'page-index',
   standalone: true,
   imports: [CommonModule, NzMenuModule, NzIconModule, VideoListComponent, FilterListComponent, NzLayoutModule],
   templateUrl: './index.component.html',

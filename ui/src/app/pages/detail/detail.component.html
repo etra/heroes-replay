@@ -1,1 +1,6 @@
-<app-video-item [inputMatch]="match"></app-video-item>
+<nz-layout>
+    <nz-content *ngIf="match">
+        <nz-page-header nzBackIcon nzTitle="{{match.video_title}}"></nz-page-header>
+        <app-video-item [inputMatch]="match" [detailPage]="true"></app-video-item>
+    </nz-content>
+</nz-layout>
