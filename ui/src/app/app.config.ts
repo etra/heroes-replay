@@ -19,10 +19,10 @@ registerLocaleData(en);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes, {
-      ...withHashLocation(), 
-      ...withComponentInputBinding()
-    }), 
+    provideRouter(routes, 
+      withHashLocation(), 
+      withComponentInputBinding()
+    ), 
     provideAnimationsAsync(), 
     provideHttpClient(), 
     provideNzIcons(icons), 
