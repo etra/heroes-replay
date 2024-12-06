@@ -1,0 +1,69 @@
+[
+ {
+    
+    "youtube_video_id": "Zbsht7S4oIE",
+    "youtube_vide_title": "Playing rare template! 2SMC(2). All random 200%! Lets go for some quests hunt!",
+
+    "template_id": "2smc(2)",
+    "tournament_id": "",
+
+    "player_id": "stygianone",
+    "town_id": "fortress",
+    "hero_id": "drakon",
+    "color_id": "red",
+
+    "opponents": [
+        {
+            "player_id": "berkas",
+            "town_id": "factory",
+            "hero_id": "todd",
+            "color_id": "blue"
+        }
+    ]
+
+ },
+ {
+
+    "youtube_video_id": "xyu6XeKzpNQ",
+    "youtube_vide_title": "Playing G+U map without View Air... Very fast boi Gunnar!",
+
+    "template_id": "G+U",
+    "tournament_id": "",
+
+    "player_id": "stygianone",
+    "town_id": "dungeon",
+    "hero_id": "gunnar",
+    "color_id": "blue",
+
+    "opponents": [
+        {
+            "player_id": "berkas",
+            "town_id": "tower",
+            "hero_id": "dracon",
+            "color_id": "red"
+        }
+    ]
+ },
+ {
+
+    "youtube_video_id": "HG7OcNTaODs",
+    "youtube_vide_title": "Can I still play it? 6 months break from Dueling! Vs @h34d",
+
+    "template_id": "duel",
+    "tournament_id": "",
+
+    "player_id": "stygianone",
+    "town_id": "stronghold",
+    "hero_id": "shiva",
+    "color_id": "red",
+
+    "opponents": [
+        {
+            "player_id": "h34d",
+            "town_id": "rampart",
+            "hero_id": "mephala",
+            "color_id": "red"
+        }
+    ]
+ }
+]

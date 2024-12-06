@@ -1,0 +1,25 @@
+[
+ {
+    
+    "youtube_video_id": "zZm49cs577g",
+    "youtube_vide_title": "How many powerstacks do I need?",
+
+    "template_id": "duel",
+    "tournament_id": "",
+
+    "player_id": "lexiav",
+    "town_id": "castle",
+    "hero_id": "beatrice",
+    "color_id": "red",
+
+    "opponents": [
+        {
+            "player_id": "zlaolang3",
+            "town_id": "fortress",
+            "hero_id": "adrienne",
+            "color_id": "blue"
+        }
+    ]
+
+ }   
+]

@@ -1,0 +1,24 @@
+[
+ {
+
+    "youtube_video_id": "EIZjy-geHgg",
+    "youtube_vide_title": "Heroes 3 HoTA - Jebus Outcast - 1 hero - Castle outplay Lexiav Dungeon",
+
+    "template_id": "duel",
+    "tournament_id": "",
+
+    "player_id": "stygianone",
+    "town_id": "castle",
+    "hero_id": "sorsha",
+    "color_id": "red",
+
+    "opponents": [
+        {
+            "player_id": "lexiav",
+            "town_id": "dungeon",
+            "hero_id": "lorelei",
+            "color_id": "blue"
+        }
+    ]
+ }
+]
