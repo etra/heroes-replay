@@ -5,10 +5,16 @@
         <img src="img/logo.png" alt="logo">
       </a>
       <h1>HOMM3 - PVP replay</h1>  
+      <a class="button" [routerLink]="['create-player']">
+        <i nz-icon nzType="user-add"></i> Create player
+      </a>
+      <a class="button" [routerLink]="['create-match']">
+        <i nz-icon nzType="plus"></i> Create match
+      </a>
+      
   </div>
   </nz-header>
   <nz-layout class="app-cotent">
-    
     <router-outlet></router-outlet>
   </nz-layout>
   <nz-footer class="footer">
