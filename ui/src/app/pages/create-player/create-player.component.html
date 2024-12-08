@@ -1,0 +1,97 @@
+<nz-layout>
+    <nz-content class="inner-content">
+    <nz-card [nzTitle]="'How to Add a Player to the Project'">
+        <div>
+          <p>
+            To add a new player to the project, follow these simple instructions:
+          </p>
+    
+          <div class="guide-instructions">
+            <h4>Instructions:</h4>
+            <ul>
+              <li>Commit the JSON file with player data to the following location:</li>
+              <ul>
+                <li><a href="https://github.com/etra/heroes-replay/tree/main/database/players" target="_blank">https://github.com/etra/heroes-replay/tree/main/database/players</a></li>
+              </ul>
+              <li><img src="img/github.png" alt="logo"></li>
+              <li>Each player must have one JSON file, and the filename should be formatted as <strong>player_id.json</strong>.</li>
+            </ul>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="note">
+            <strong>Important:</strong> Make sure the player_id in the filename is unique to avoid conflicts.
+          </div>
+        </div>
+      </nz-card>
+<nz-card>
+    <form nz-form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="id" nzRequired>Player ID</nz-form-label>
+            <nz-form-control [nzSpan]="14" nzValidatingTip="Validating..."  [nzErrorTip]="userErrorTpl">
+                <input nz-input formControlName="id" id="id" placeholder="Enter Player ID" />
+                <ng-template #userErrorTpl let-control>
+                    @if (control.errors?.['required']) {
+                      Please input your player id!
+                    }
+                    @if (control.errors?.['duplicated']) {
+                      The player id is redundant!
+                    }
+                  </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="name" nzRequired>Name</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input formControlName="name" id="name" placeholder="Enter Name" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="youtube">YouTube</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input formControlName="youtube" id="youtube" placeholder="Enter YouTube Channel" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="twitch">Twitch</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input formControlName="twitch" id="twitch" placeholder="Enter Twitch Channel" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="discord">Discord</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input formControlName="discord" id="discord" placeholder="Enter Discord ID" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                <button nz-button nzType="primary" type="submit">Create Player</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-card>
+    </nz-content>
+</nz-layout>
+
+<nz-modal
+[(nzVisible)]="isVisible"
+[nzTitle]="modalTitle"
+[nzContent]="modalContent"
+[nzFooter]="modalFooter"
+(nzOnCancel)="handleCancel()"
+>
+<ng-template #modalTitle>Player JSON</ng-template>
+<ng-template #modalContent>
+  <code>{{ output }}</code>
+</ng-template>
+<ng-template #modalFooter>
+  <button nz-button nzType="default" (click)="downloadJson()">Download JSON</button>
+  <button nz-button nzType="default" (click)="copyToClipboard()">Copy to Clipboard</button>
+  <button nz-button nzType="primary" (click)="handleCancel()">Close</button>
+</ng-template>
+</nz-modal>
